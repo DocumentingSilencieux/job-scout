@@ -7,6 +7,8 @@ Built In Austin company directory to discover new Austin startups/companies
 and adds ones with IT roles to the permanent watch list.
 """
 
+from __future__ import annotations
+
 import hashlib
 import json
 import os
@@ -125,6 +127,34 @@ YEARS_REQUIRED = re.compile(
     re.IGNORECASE,
 )
 
+# Salary parsing — target is $20–24/hr (~$41–50K/year)
+# Disqualify if clearly above entry-level ceiling; bonus if in range
+_HOURLY_RANGE    = re.compile(r'\$\s*(\d+(?:\.\d+)?)\s*(?:–|—|-|to)\s*\$?\s*(\d+(?:\.\d+)?)\s*(?:/\s*(?:hr|hour)|per\s+hour)', re.IGNORECASE)
+_HOURLY_SINGLE   = re.compile(r'\$\s*(\d+(?:\.\d+)?)\s*(?:/\s*(?:hr|hour)|per\s+hour)', re.IGNORECASE)
+_ANNUAL_RANGE    = re.compile(r'\$\s*(\d{2,3}),(\d{3})\s*(?:–|—|-|to)\s*\$?\s*(\d{2,3}),(\d{3})', re.IGNORECASE)
+_ANNUAL_K_RANGE  = re.compile(r'\$\s*(\d{2,3})\s*[kK]\s*(?:–|—|-|to)\s*\$?\s*(\d{2,3})\s*[kK]', re.IGNORECASE)
+_ANNUAL_K_SINGLE = re.compile(r'\$\s*(\d{2,3})\s*[kK]\b', re.IGNORECASE)
+_ANNUAL_SINGLE   = re.compile(r'\$\s*(\d{2,3}),(\d{3})\b', re.IGNORECASE)
+
+# Disqualify if annual > $75K or hourly > $36/hr (solidly above entry-level ceiling)
+_SALARY_CEILING_ANNUAL  = 75_000
+_SALARY_CEILING_HOURLY  = 36
+# In-range bonus: $35K–$65K annual or $17–$36/hr
+_SALARY_FLOOR_ANNUAL    = 35_000
+_SALARY_FLOOR_HOURLY    = 17
+
+# URL/title patterns that indicate a service page rather than a job posting
+_SERVICE_URL_PARTS = (
+    "/service", "/solution", "/product", "/about", "/resource",
+    "/blog", "/contact", "/team", "/partner", "/news", "/case-study",
+    "/industries", "/why-us", "/how-we", "/what-we",
+)
+# Titles that end like a service offering, not a job role
+_SERVICE_TITLE_ENDERS = (
+    " services", " solutions", " management", " consulting",
+    " support services", " offerings", " products", " technologies",
+)
+
 CAREERS_PATH_GUESSES = [
     "/careers", "/jobs", "/about/careers", "/about-us/careers",
     "/join-us", "/join-our-team", "/work-with-us", "/hiring",
@@ -185,6 +215,91 @@ def resolve_url(href: str, base: str) -> str:
     return base.rstrip("/") + "/" + href
 
 
+def _looks_like_job_title(text: str) -> bool:
+    """Return False for text that reads like a service/nav item rather than a job title."""
+    lower = text.lower().strip()
+    if any(lower.endswith(e) for e in _SERVICE_TITLE_ENDERS):
+        return False
+    # Marketing/nav phrases never appear in job titles
+    if any(w in lower for w in ("we offer", "our ", "your ", "learn more", "click here", "read more", "get started")):
+        return False
+    return True
+
+
+def _href_looks_like_job(href: str, careers_url: str) -> bool:
+    """Return False if href points to a service/about page rather than a job posting."""
+    if not href or href == "#" or href.startswith(("mailto:", "tel:", "javascript:")):
+        return False
+    resolved = resolve_url(href, careers_url)
+    # Same page — no new content
+    if resolved.rstrip("/#") == careers_url.rstrip("/#"):
+        return False
+    url_lower = resolved.lower()
+    if any(p in url_lower for p in _SERVICE_URL_PARTS):
+        return False
+    return True
+
+
+def _check_salary(text: str) -> int:
+    """
+    Parse salary from text and compare to entry-level target ($20–24/hr, ~$41–50K/year).
+    Returns:
+       0  → salary found and clearly above entry-level ceiling → disqualify
+       1  → salary found and within entry-level range → bonus
+      -1  → no salary found → neutral
+    """
+    # Hourly range: $20 - $24/hr
+    m = _HOURLY_RANGE.search(text)
+    if m:
+        lo, hi = float(m.group(1)), float(m.group(2))
+        if lo > _SALARY_CEILING_HOURLY:
+            return 0
+        return 1 if lo >= _SALARY_FLOOR_HOURLY else -1
+
+    # Single hourly rate
+    m = _HOURLY_SINGLE.search(text)
+    if m:
+        rate = float(m.group(1))
+        if rate > _SALARY_CEILING_HOURLY:
+            return 0
+        return 1 if rate >= _SALARY_FLOOR_HOURLY else -1
+
+    # Annual range: $42,000 - $50,000
+    m = _ANNUAL_RANGE.search(text)
+    if m:
+        lo = int(m.group(1)) * 1000 + int(m.group(2))
+        hi = int(m.group(3)) * 1000 + int(m.group(4))
+        if lo > _SALARY_CEILING_ANNUAL:
+            return 0
+        return 1 if lo >= _SALARY_FLOOR_ANNUAL else -1
+
+    # Annual K range: $42k - $50k
+    m = _ANNUAL_K_RANGE.search(text)
+    if m:
+        lo, hi = int(m.group(1)) * 1000, int(m.group(2)) * 1000
+        if lo > _SALARY_CEILING_ANNUAL:
+            return 0
+        return 1 if lo >= _SALARY_FLOOR_ANNUAL else -1
+
+    # Single annual K: $100K
+    m = _ANNUAL_K_SINGLE.search(text)
+    if m:
+        val = int(m.group(1)) * 1000
+        if val > _SALARY_CEILING_ANNUAL:
+            return 0
+        return 1 if val >= _SALARY_FLOOR_ANNUAL else -1
+
+    # Single annual: $100,000
+    m = _ANNUAL_SINGLE.search(text)
+    if m:
+        val = int(m.group(1)) * 1000 + int(m.group(2))
+        if val > _SALARY_CEILING_ANNUAL:
+            return 0
+        return 1 if val >= _SALARY_FLOOR_ANNUAL else -1
+
+    return -1  # no salary info found
+
+
 # ── Scoring ───────────────────────────────────────────────────────────────────
 
 def score_job(title: str, description: str = "") -> int:
@@ -197,6 +312,10 @@ def score_job(title: str, description: str = "") -> int:
     for m in YEARS_REQUIRED.finditer(full_text):
         if int(m.group(1)) >= 3:
             return 0
+
+    salary_result = _check_salary(full_text)
+    if salary_result == 0:
+        return 0  # salary clearly above entry-level ceiling
 
     score = 0
 
@@ -214,6 +333,9 @@ def score_job(title: str, description: str = "") -> int:
 
     if any(kw in full_text for kw in LOCATION_KEYWORDS):
         score += 1
+
+    if salary_result == 1:
+        score += 1  # salary explicitly in entry-level range
 
     return min(score, 10)
 
@@ -265,6 +387,8 @@ def extract_jobs(company_name: str, careers_url: str) -> list[dict]:
         key = title.lower().strip()
         if not title or len(title) < 5 or len(title) > 120 or key in seen_titles:
             return
+        if not _looks_like_job_title(title):
+            return
         seen_titles.add(key)
         url = resolve_url(href, careers_url) if href else careers_url
         jobs.append({"title": title, "url": url, "description": desc[:400], "company": company_name})
@@ -286,17 +410,24 @@ def extract_jobs(company_name: str, careers_url: str) -> list[dict]:
                         link_el["href"],
                         el.get_text(" ", strip=True))
 
-    # Fallback: anchor text that reads like an IT job title
+    # Fallback: anchor text that reads like an IT job title.
+    # Only fires when the structured pass found nothing, and only follows links
+    # that point somewhere job-like (not service/about/nav pages).
     if not jobs:
         it_terms = {
-            "technician", "support", "help desk", "helpdesk", "noc",
-            "analyst", "specialist", "administrator", "coordinator",
-            "consultant", "desk", "network",
+            "technician", "help desk", "helpdesk", "noc",
+            "analyst", "specialist", "administrator",
+            "coordinator", "desktop support", "tech support",
         }
         for a in soup.find_all("a", href=True):
             text = a.get_text(strip=True)
-            if any(t in text.lower() for t in it_terms):
-                add_job(text, a["href"], "")
+            href = a["href"]
+            if (
+                any(t in text.lower() for t in it_terms)
+                and _looks_like_job_title(text)
+                and _href_looks_like_job(href, careers_url)
+            ):
+                add_job(text, href, "")
 
     return jobs
 
