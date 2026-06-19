@@ -38,4 +38,5 @@ jobs:
           git config user.email "actions@github.com"
           git add seen_jobs.json discovered_companies.json
           git diff --staged --quiet || git commit -m "chore: update job scout state [skip ci]"
+          git pull --rebase origin main
           git push
