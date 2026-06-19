@@ -1,4 +1,68 @@
 {
-  "last_directory_crawl": null,
-  "companies": []
+  "last_directory_crawl": "2026-06-19",
+  "companies": [
+    {
+      "name": "Vercel",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/vercel",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Apex Fintech Solutions",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/apex-fintech-solutions",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "LogicMonitor",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/logicmonitor",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Riot Platforms, Inc.",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/riot-4",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Graphcore",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/graphcore",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Huntress",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/huntress",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Moov",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/moov-financial",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    }
+  ]
 }
