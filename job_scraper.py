@@ -148,12 +148,38 @@ _SERVICE_URL_PARTS = (
     "/service", "/solution", "/product", "/about", "/resource",
     "/blog", "/contact", "/team", "/partner", "/news", "/case-study",
     "/industries", "/why-us", "/how-we", "/what-we",
+    "/portal", "/support-portal", "/client-portal",
 )
-# Titles that end like a service offering, not a job role
+# Titles that end like a service offering, tool, or system — not a job role.
+# "Help Desk Specialist" passes; "IT Support Portal" fails.
 _SERVICE_TITLE_ENDERS = (
     " services", " solutions", " management", " consulting",
     " support services", " offerings", " products", " technologies",
+    " portal", " platform", " system", " center", " centre",
+    " hub", " page", " tool",
 )
+# Titles that START like a CTA or question are never job titles.
+# "Get Tech Support", "Call Support", "How to Contact IT Support" all fail here.
+_CTA_STARTERS = (
+    "get ", "call ", "email ", "contact ", "how to",
+    "submit ", "learn ", "find us", "read ", "download ",
+    "click ", "view ", "schedule ", "request ",
+    "sign up", "log in", "login ", "access ", "visit ",
+)
+
+# Resume-specific qualification signals.
+# Listings that explicitly name Benjamin's certs, education, or differentiators
+# get bonus points because he's already qualified — no stretch required.
+QUAL_SIGNALS = [
+    # CompTIA A+ — he holds this cert
+    (["comptia a+", "a+ certified", "a+ certification", "comptiaa+"],    2),
+    # CompTIA Network+ — he holds this cert
+    (["network+", "net+", "network plus", "n+ certified"],               2),
+    # Education: HS diploma is sufficient (he has one, no college yet)
+    (["high school", "hs diploma", "no degree", "or equivalent", "ged"], 1),
+    # Bilingual English/Spanish is a differentiator for Austin MSPs
+    (["bilingual", "spanish"],                                            1),
+]
 
 CAREERS_PATH_GUESSES = [
     "/careers", "/jobs", "/about/careers", "/about-us/careers",
@@ -216,14 +242,40 @@ def resolve_url(href: str, base: str) -> str:
 
 
 def _looks_like_job_title(text: str) -> bool:
-    """Return False for text that reads like a service/nav item rather than a job title."""
+    """
+    Return False for text that reads like a service/nav/CTA item rather than a job title.
+
+    Three structural checks — none depend on removing IT vocabulary:
+      1. Ends like a tool or service category, not a role noun
+      2. Starts like a call-to-action or question (CTA phrases are never job titles)
+      3. Contains marketing/possessive language
+    """
     lower = text.lower().strip()
     if any(lower.endswith(e) for e in _SERVICE_TITLE_ENDERS):
         return False
-    # Marketing/nav phrases never appear in job titles
-    if any(w in lower for w in ("we offer", "our ", "your ", "learn more", "click here", "read more", "get started")):
+    if any(lower.startswith(s) for s in _CTA_STARTERS):
+        return False
+    if any(w in lower for w in ("we offer", "our services", "your ", "learn more",
+                                 "click here", "read more", "get started")):
         return False
     return True
+
+
+def _in_navigation(tag) -> bool:
+    """
+    Return True if the tag is nested inside a navigation, header, or footer element.
+    Links in those zones are site navigation, never job postings.
+    """
+    for parent in tag.parents:
+        name = getattr(parent, "name", None)
+        if name in ("nav", "header", "footer"):
+            return True
+        classes = " ".join(parent.get("class", []) if hasattr(parent, "get") else [])
+        id_attr = (parent.get("id", "") or "") if hasattr(parent, "get") else ""
+        combined = (classes + " " + id_attr).lower()
+        if any(w in combined for w in ("nav", "menu", "header", "footer", "sidebar", "breadcrumb")):
+            return True
+    return False
 
 
 def _href_looks_like_job(href: str, careers_url: str) -> bool:
@@ -337,6 +389,12 @@ def score_job(title: str, description: str = "") -> int:
     if salary_result == 1:
         score += 1  # salary explicitly in entry-level range
 
+    # Resume qualification match — bonus when listing names certs or education
+    # that Benjamin already holds, confirming he meets requirements today
+    for signals, pts in QUAL_SIGNALS:
+        if any(sig in full_text for sig in signals):
+            score += pts
+
     return min(score, 10)
 
 
@@ -411,13 +469,25 @@ def extract_jobs(company_name: str, careers_url: str) -> list[dict]:
                         el.get_text(" ", strip=True))
 
     # Fallback: anchor text that reads like an IT job title.
-    # Only fires when the structured pass found nothing, and only follows links
-    # that point somewhere job-like (not service/about/nav pages).
+    # Only fires when the structured pass found nothing.
+    # Three guards distinguish real job links from nav/service links — without
+    # removing any job-relevant vocabulary:
+    #   1. _looks_like_job_title: rejects CTA starters and service/tool enders
+    #   2. _in_navigation: rejects links inside <nav>/<header>/<footer>/menu elements
+    #   3. _href_looks_like_job: rejects links pointing to service/contact/portal URLs
     if not jobs:
         it_terms = {
-            "technician", "help desk", "helpdesk", "noc",
-            "analyst", "specialist", "administrator",
-            "coordinator", "desktop support", "tech support",
+            # Role types — all core target roles restored
+            "help desk", "helpdesk", "noc", "technician",
+            "it support", "tech support", "desktop support",
+            "network support", "field support", "support specialist",
+            "support analyst", "support engineer", "it analyst",
+            "network analyst", "systems analyst", "it specialist",
+            # Role nouns that appear in job titles but also nav pages;
+            # caught by the three guards above rather than by removing the word
+            "support", "network", "consultant", "administrator",
+            "coordinator", "specialist", "analyst", "engineer",
+            "desk",
         }
         for a in soup.find_all("a", href=True):
             text = a.get_text(strip=True)
@@ -425,6 +495,7 @@ def extract_jobs(company_name: str, careers_url: str) -> list[dict]:
             if (
                 any(t in text.lower() for t in it_terms)
                 and _looks_like_job_title(text)
+                and not _in_navigation(a)
                 and _href_looks_like_job(href, careers_url)
             ):
                 add_job(text, href, "")
