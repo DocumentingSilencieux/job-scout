@@ -1,0 +1,41 @@
+name: Daily IT Job Scout
+
+on:
+  schedule:
+    # 12:00 UTC = 6 am CST (Nov–Mar) / 7 am CDT (Mar–Nov) — always ≥ 6 am Austin time
+    - cron: '0 12 * * *'
+  workflow_dispatch:   # lets you trigger a manual test run from the Actions tab
+
+permissions:
+  contents: write      # needed to commit seen_jobs.json and discovered_companies.json back
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run job scout
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: python job_scraper.py
+
+      - name: Save state back to repo
+        run: |
+          git config user.name "job-scout-bot"
+          git config user.email "actions@github.com"
+          git add seen_jobs.json discovered_companies.json
+          git diff --staged --quiet || git commit -m "chore: update job scout state [skip ci]"
+          git push
