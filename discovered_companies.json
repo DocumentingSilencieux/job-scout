@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-06-19",
+  "last_directory_crawl": "2026-06-26",
   "companies": [
     {
       "name": "Vercel",
@@ -61,6 +61,51 @@
       "builtin_url": "https://www.builtinaustin.com/company/moov-financial",
       "source": "builtinaustin_directory",
       "first_seen": "2026-06-19",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Ericsson",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/ericsson",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-26",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Xurrent Inc",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/xurrent-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-26",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "OVERWATCH",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/overwatch",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-26",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "EOS IT Solutions",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/eos-it-solutions",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-26",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Freese and Nichols",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/freese-and-nichols",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-06-26",
       "last_checked": null,
       "has_it_roles": true
     }
