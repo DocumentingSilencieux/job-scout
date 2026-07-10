@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-07-03",
+  "last_directory_crawl": "2026-07-10",
   "companies": [
     {
       "name": "Vercel",
@@ -106,6 +106,105 @@
       "builtin_url": "https://www.builtinaustin.com/company/freese-and-nichols",
       "source": "builtinaustin_directory",
       "first_seen": "2026-06-26",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Cogna",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/cogna",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Forcepoint",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/forcepoint",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Itron",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/itron",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Pacific Office Automation",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/pacific-office-automation",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Marvell Technology",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/marvell-technology",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Neurophos",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/neurophos",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Paddle",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/paddle",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Tank Payments",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/tank-payments",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "3Core Systems , Inc",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/3core-systems-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Weedmaps",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/weedmaps",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "SecurityScorecard",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/securityscorecard",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-07-10",
       "last_checked": null,
       "has_it_roles": true
     }
