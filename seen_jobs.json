@@ -736,5 +736,23 @@
     "company": "Built In Austin",
     "score": 5,
     "date": "2026-08-19"
+  },
+  "398c7a9faa71bf8a1468f726c2073f39": {
+    "title": "Help Desk II",
+    "company": "Built In Austin",
+    "score": 7,
+    "date": "2026-08-21"
+  },
+  "23cd1e00379a91256618e2df224698ce": {
+    "title": "Help Desk Manager",
+    "company": "Built In Austin",
+    "score": 0,
+    "date": "2026-08-21"
+  },
+  "c720f7dd108236aea3187edddf9cd96a": {
+    "title": "Help Desk Support Specialist",
+    "company": "Built In Austin",
+    "score": 7,
+    "date": "2026-08-21"
   }
 }
