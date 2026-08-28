@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-08-21",
+  "last_directory_crawl": "2026-08-28",
   "companies": [
     {
       "name": "Vercel",
@@ -205,6 +205,51 @@
       "builtin_url": "https://www.builtinaustin.com/company/securityscorecard",
       "source": "builtinaustin_directory",
       "first_seen": "2026-07-10",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Mirantis",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/mirantis",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-08-28",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "4M Analytics",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/4m-analytics",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-08-28",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "TerraFirma, Inc",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/terrafirma-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-08-28",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Stanley Consultants",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/stanley-consultants",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-08-28",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Atlas Technica",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/atlas-technica",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-08-28",
       "last_checked": null,
       "has_it_roles": true
     }
