@@ -832,5 +832,23 @@
     "company": "Built In Austin",
     "score": 7,
     "date": "2026-09-01"
+  },
+  "d7f42f73058fce193895e135cbb877bd": {
+    "title": "IT Support and Compliance Analyst",
+    "company": "Built In Austin",
+    "score": 4,
+    "date": "2026-09-02"
+  },
+  "b918234ec6c7ce0de0fd403d6815f2c1": {
+    "title": "IT Support Engineer",
+    "company": "Built In Austin",
+    "score": 8,
+    "date": "2026-09-02"
+  },
+  "f4bf4582caa2bee8787c78ffacec61e6": {
+    "title": "Junior IT Support Engineer",
+    "company": "Built In Austin",
+    "score": 8,
+    "date": "2026-09-02"
   }
 }
