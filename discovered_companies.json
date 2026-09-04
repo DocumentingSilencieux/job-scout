@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-08-28",
+  "last_directory_crawl": "2026-09-04",
   "companies": [
     {
       "name": "Vercel",
@@ -250,6 +250,87 @@
       "builtin_url": "https://www.builtinaustin.com/company/atlas-technica",
       "source": "builtinaustin_directory",
       "first_seen": "2026-08-28",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Blackberry",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/blackberry",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Westwood Professional Services",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/westwood-professional-services",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Praetorian",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/praetorian",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Ferrovial",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/ferrovial",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Mythic AI",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/mythic-ai",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "TRIMEDX",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/trimedx",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Trend Micro",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/trend-micro",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Thales",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/thales",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Centre Technologies",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/centre-technologies",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-04",
       "last_checked": null,
       "has_it_roles": true
     }
