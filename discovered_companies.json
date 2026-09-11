@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-09-04",
+  "last_directory_crawl": "2026-09-11",
   "companies": [
     {
       "name": "Vercel",
@@ -331,6 +331,15 @@
       "builtin_url": "https://www.builtinaustin.com/company/centre-technologies",
       "source": "builtinaustin_directory",
       "first_seen": "2026-09-04",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Aypa Power",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/aypa-power",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-11",
       "last_checked": null,
       "has_it_roles": true
     }
