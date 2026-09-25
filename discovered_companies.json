@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-09-18",
+  "last_directory_crawl": "2026-09-25",
   "companies": [
     {
       "name": "Vercel",
@@ -367,6 +367,42 @@
       "builtin_url": "https://www.builtinaustin.com/company/cobb-fendley-associates-inc",
       "source": "builtinaustin_directory",
       "first_seen": "2026-09-18",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "R1 RCM",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/r1-rcm",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-25",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Broadcom",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/broadcom-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-25",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Two Six Technologies",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/two-six-technologies",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-25",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "H.W. Lochner, Inc.",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/h-w-lochner-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-09-25",
       "last_checked": null,
       "has_it_roles": true
     }
