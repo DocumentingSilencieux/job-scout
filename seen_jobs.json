@@ -1060,5 +1060,23 @@
     "company": "Built In Austin",
     "score": 8,
     "date": "2026-10-01"
+  },
+  "c5825e9a414357aaf7f20f59a4b6cc41": {
+    "title": "Help Desk Specialist",
+    "company": "Built In Austin",
+    "score": 6,
+    "date": "2026-10-02"
+  },
+  "002ea180fa0d396657ba9c89d0acceed": {
+    "title": "IT Support Engineer II",
+    "company": "Built In Austin",
+    "score": 6,
+    "date": "2026-10-02"
+  },
+  "6c716e7d620574a1fbd02405713d60ce": {
+    "title": "Endpoint Engineer / DHS Desktop Support Services",
+    "company": "Built In Austin",
+    "score": 4,
+    "date": "2026-10-02"
   }
 }

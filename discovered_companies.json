@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-09-25",
+  "last_directory_crawl": "2026-10-02",
   "companies": [
     {
       "name": "Vercel",
@@ -403,6 +403,33 @@
       "builtin_url": "https://www.builtinaustin.com/company/h-w-lochner-inc",
       "source": "builtinaustin_directory",
       "first_seen": "2026-09-25",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Wiz",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/wiz",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-02",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "SolarWinds",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/solarwinds",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-02",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Oracle",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/oracle",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-02",
       "last_checked": null,
       "has_it_roles": true
     }
