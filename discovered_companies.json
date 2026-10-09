@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-10-02",
+  "last_directory_crawl": "2026-10-09",
   "companies": [
     {
       "name": "Vercel",
@@ -430,6 +430,42 @@
       "builtin_url": "https://www.builtinaustin.com/company/oracle",
       "source": "builtinaustin_directory",
       "first_seen": "2026-10-02",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "GCS Technologies",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/gcs-technologies",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-09",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Cadence Design Systems",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/cadence-design-systems",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-09",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "DCOMM Inc",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/dcomm-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-09",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Hardesty & Hanover",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/hardesty-hanover",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-09",
       "last_checked": null,
       "has_it_roles": true
     }
