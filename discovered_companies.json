@@ -1,5 +1,5 @@
 {
-  "last_directory_crawl": "2026-10-23",
+  "last_directory_crawl": "2026-10-30",
   "companies": [
     {
       "name": "Vercel",
@@ -484,6 +484,24 @@
       "builtin_url": "https://www.builtinaustin.com/company/short-elliott-hendrickson-inc",
       "source": "builtinaustin_directory",
       "first_seen": "2026-10-23",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Raba Kistner, Inc.",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/raba-kistner-inc",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-30",
+      "last_checked": null,
+      "has_it_roles": true
+    },
+    {
+      "name": "Convergint Federal Solutions",
+      "base": "",
+      "builtin_url": "https://www.builtinaustin.com/company/convergint-federal-solutions",
+      "source": "builtinaustin_directory",
+      "first_seen": "2026-10-30",
       "last_checked": null,
       "has_it_roles": true
     }
